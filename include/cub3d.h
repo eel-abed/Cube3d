@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:30:29 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 14:40:53 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/04/27 17:35:02 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ typedef struct s_game
 /* Prototypes de fonctions */
 // Parsing
 int				parse_map(t_game *game, char *file_path);
+int				parse_textures_and_colors(t_game *game, int fd);
+int				parse_map_grid(t_game *game, int fd, char *file_path);
+int				validate_map(t_game *game);
 
 // Rendering
 void			raycasting(t_game *game);
@@ -83,5 +86,6 @@ int				handle_close(t_game *game);
 // Utils
 void			init_game(t_game *game);
 void			clean_exit(t_game *game, int status);
+void			ft_free_tab(char **tab);
 
 #endif

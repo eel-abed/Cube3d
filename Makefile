@@ -6,7 +6,7 @@
 #    By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 13:52:24 by eel-abed          #+#    #+#              #
-#    Updated: 2025/04/27 14:52:14 by eel-abed         ###   ########.fr        #
+#    Updated: 2025/04/27 17:31:13 by eel-abed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ MLX_DIR = lib/minilibx-linux
 # Fichiers source (à compléter au fur et à mesure)
 SRC =	src/main.c \
 		src/parsing/parse_map.c \
+		src/parsing/parse_textures.c \
+		src/parsing/parse_grid.c \
+		src/parsing/validate_map.c \
 		src/render/raycasting.c \
 		src/game/player.c \
 		src/utils/utils.c
