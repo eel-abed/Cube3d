@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:50:21 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 17:35:35 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:03:35 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,17 @@ int	parse_map(t_game *game, char *file_path)
 	fd = open_map_file(file_path);
 	if (fd == -1)
 		return (1);
-	// TODO: Lire les textures et couleurs
 	if (parse_textures_and_colors(game, fd) != 0)
 	{
 		close(fd);
 		return (1);
 	}
-	// TODO: Lire la carte
 	if (parse_map_grid(game, fd, file_path) != 0)
 	{
 		close(fd);
 		return (1);
 	}
-	// TODO: Valider la carte
+
 	if (validate_map(game) != 0)
 	{
 		close(fd);

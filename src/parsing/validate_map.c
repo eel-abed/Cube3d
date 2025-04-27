@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:00:29 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 17:27:36 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/04/27 18:04:07 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	validate_chars(t_game *game)
 		{
 			if (!is_valid_char(game->map.grid[i][j]))
 			{
-				printf("Error\nInvalid character in map: %c\n",
+				printf("ERRRO : Invalid character in map: %c\n",
 					game->map.grid[i][j]);
 				return (1);
 			}
@@ -74,7 +74,7 @@ static int	validate_chars(t_game *game)
 	}
 	if (player_count != 1)
 	{
-		printf("Error\nMap must have exactly one player starting position\n");
+		printf("ERROR : Map must have exactly one player starting position\n");
 		return (1);
 	}
 	return (0);
@@ -115,7 +115,7 @@ static int	validate_walls(t_game *game)
 			{
 				if (!is_surrounded_by_walls(game, i, j))
 				{
-					printf("Error\nMap is not surrounded by walls\n");
+					printf("ERROR : Map is not surrounded by walls\n");
 					return (1);
 				}
 			}
