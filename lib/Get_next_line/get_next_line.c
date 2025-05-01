@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafourni <mafourni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 11:53:51 by mafourni          #+#    #+#             */
-/*   Updated: 2024/04/24 21:10:36 by mafourni         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:24:34 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] && s != NULL)
-		i++;
-	return (i);
-}
 
 char	*ft_keep_line_clean(char *keep_line)
 {
@@ -108,13 +96,4 @@ char	*get_next_line(int fd)
 	else
 		ft_keep_line_clean(keep_line);
 	return (line);
-}
-
-int main()
-{
-	int fd = open("test.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	char c;
-	printf("%zd",read(fd, &c, 1));
-	
 }

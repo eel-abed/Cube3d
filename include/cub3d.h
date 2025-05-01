@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:30:29 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 17:35:02 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:04:54 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../lib/LIBFT_WITH_BONUS-master/libft.h"
 # include "../lib/minilibx-linux/mlx.h"
+# include "../lib/Get_next_line/get_next_line.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -75,6 +76,11 @@ int				parse_map(t_game *game, char *file_path);
 int				parse_textures_and_colors(t_game *game, int fd);
 int				parse_map_grid(t_game *game, int fd, char *file_path);
 int				validate_map(t_game *game);
+int				open_map_file(char *file_path);
+int				count_map_lines(int fd);
+
+
+
 
 // Rendering
 void			raycasting(t_game *game);

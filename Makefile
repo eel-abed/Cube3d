@@ -6,7 +6,7 @@
 #    By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 13:52:24 by eel-abed          #+#    #+#              #
-#    Updated: 2025/04/27 17:31:13 by eel-abed         ###   ########.fr        #
+#    Updated: 2025/05/01 16:20:47 by eel-abed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,26 +22,28 @@ OBJ_DIR = obj
 INC_DIR = include
 LIBFT_DIR = lib/LIBFT_WITH_BONUS-master
 MLX_DIR = lib/minilibx-linux
+GNL_DIR = lib/Get_next_line
 
-# Fichiers source (à compléter au fur et à mesure)
-SRC =	src/main.c \
+# Fichiers source
+SRC = 	src/main.c \
 		src/parsing/parse_map.c \
 		src/parsing/parse_textures.c \
 		src/parsing/parse_grid.c \
 		src/parsing/validate_map.c \
-		src/render/raycasting.c \
+		src/utils/utils.c \
 		src/game/player.c \
-		src/utils/utils.c
+		src/render/raycasting.c \
+		lib/Get_next_line/get_next_line.c
 
 # Fichiers objet
-OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 # Bibliothèques
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a
 
 # Chemins d'inclusion
-INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
 
 # Bibliothèques pour la liaison
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
@@ -53,7 +55,11 @@ $(NAME): $(LIBFT) $(MLX) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(NAME) created!"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/lib/%.o: lib/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -77,4 +83,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

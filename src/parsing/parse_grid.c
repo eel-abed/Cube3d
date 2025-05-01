@@ -6,13 +6,13 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:20:54 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 17:34:16 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:59:16 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	count_map_lines(int fd)
+int	count_map_lines(int fd)
 {
 	int		line_count;
 	char	*line;

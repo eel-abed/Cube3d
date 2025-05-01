@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:50:21 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 18:03:35 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:58:30 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_file_extension(char *filename)
 	}
 	return (1);
 }
-static int	open_map_file(char *file_path)
+int	open_map_file(char *file_path)
 {
 	int	fd;
 
