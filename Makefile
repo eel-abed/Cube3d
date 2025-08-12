@@ -6,7 +6,7 @@
 #    By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/27 13:52:24 by eel-abed          #+#    #+#              #
-#    Updated: 2025/05/01 16:20:47 by eel-abed         ###   ########.fr        #
+#    Updated: 2025/05/03 20:01:04 by eel-abed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ SRC = 	src/main.c \
 		src/parsing/parse_map.c \
 		src/parsing/parse_textures.c \
 		src/parsing/parse_grid.c \
-		src/parsing/validate_map.c \
-		src/utils/utils.c \
-		src/game/player.c \
-		src/render/raycasting.c \
+		src/parsing/parse_colors.c \
+		src/parsing/parse_file.c\
+		src/parsing/validate_map.c\
+		src/parsing/parsing_utils.c\
 		lib/Get_next_line/get_next_line.c
 
 # Fichiers objet

@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:00:29 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/04/27 18:04:07 by eel-abed         ###   ########.fr       */
+/*   Created: 2025/05/03 19:13:52 by eel-abed          #+#    #+#             */
+/*   Updated: 2025/05/03 19:40:47 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../../include/cub3d.h"
 
-static int	is_valid_char(char c)
+int	is_valid_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
 		|| c == ' ');
 }
 
-static int	validate_chars(t_game *game)
+int	validate_chars(t_game *game)
 {
-	int	i;
-	int	j;
 	int	player_count;
 
+	int i, j;
 	player_count = 0;
 	for (i = 0; i < game->map.height; i++)
 	{
@@ -31,91 +31,67 @@ static int	validate_chars(t_game *game)
 		{
 			if (!is_valid_char(game->map.grid[i][j]))
 			{
-				printf("ERRRO : Invalid character in map: %c\n",
+				printf("Error\nInvalid character in map: %c\n",
 					game->map.grid[i][j]);
 				return (1);
 			}
+			// Compter les positions du joueur
 			if (game->map.grid[i][j] == 'N' || game->map.grid[i][j] == 'S'
 				|| game->map.grid[i][j] == 'E' || game->map.grid[i][j] == 'W')
 			{
 				player_count++;
 				game->player.x = j + 0.5;
 				game->player.y = i + 0.5;
-				if (game->map.grid[i][j] == 'N')
-				{
-					game->player.dir_x = 0;
-					game->player.dir_y = -1;
-					game->player.plane_x = 0.66;
-					game->player.plane_y = 0;
-				}
-				else if (game->map.grid[i][j] == 'S')
-				{
-					game->player.dir_x = 0;
-					game->player.dir_y = 1;
-					game->player.plane_x = -0.66;
-					game->player.plane_y = 0;
-				}
-				else if (game->map.grid[i][j] == 'E')
-				{
-					game->player.dir_x = 1;
-					game->player.dir_y = 0;
-					game->player.plane_x = 0;
-					game->player.plane_y = 0.66;
-				}
-				else // 'W'
-				{
-					game->player.dir_x = -1;
-					game->player.dir_y = 0;
-					game->player.plane_x = 0;
-					game->player.plane_y = -0.66;
-				}
+				game->player.orientation = game->map.grid[i][j];
 			}
 		}
 	}
 	if (player_count != 1)
 	{
-		printf("ERROR : Map must have exactly one player starting position\n");
+		printf("Error\nMap must have exactly one player starting position\n");
 		return (1);
 	}
 	return (0);
 }
 
-static int	is_surrounded_by_walls(t_game *game, int y, int x)
+int	is_surrounded_by_walls(t_game *game, int y, int x)
 {
+	// Si le caractère est un espace ou un mur, pas besoin de vérifier
 	if (game->map.grid[y][x] == ' ' || game->map.grid[y][x] == '1')
 		return (1);
+	// Vérifier si la cellule est à la bordure
 	if (y == 0 || y == game->map.height - 1 || x == 0
 		|| x >= (int)ft_strlen(game->map.grid[y]) - 1)
 		return (0);
-	if (x >= (int)ft_strlen(game->map.grid[y - 1]) || game->map.grid[y
-		- 1][x] == ' ')
+	// Vérifier les cellules adjacentes
+	if (y > 0 && (x >= (int)ft_strlen(game->map.grid[y - 1]) || game->map.grid[y
+			- 1][x] == ' '))
 		return (0);
-	if (x >= (int)ft_strlen(game->map.grid[y + 1]) || game->map.grid[y
-		+ 1][x] == ' ')
+	if (y < game->map.height - 1 && (x >= (int)ft_strlen(game->map.grid[y + 1])
+			|| game->map.grid[y + 1][x] == ' '))
 		return (0);
 	if (game->map.grid[y][x - 1] == ' ')
 		return (0);
-	if (game->map.grid[y][x + 1] == ' ')
+	if (game->map.grid[y][x + 1] == ' ' || game->map.grid[y][x + 1] == '\0')
 		return (0);
 	return (1);
 }
 
-static int	validate_walls(t_game *game)
+int	validate_walls(t_game *game)
 {
-	int	i;
-	int	j;
-
+	int i, j;
 	for (i = 0; i < game->map.height; i++)
 	{
 		for (j = 0; game->map.grid[i][j]; j++)
 		{
+			// Vérifier uniquement les zones de jeu
 			if (game->map.grid[i][j] == '0' || game->map.grid[i][j] == 'N'
 				|| game->map.grid[i][j] == 'S' || game->map.grid[i][j] == 'E'
 				|| game->map.grid[i][j] == 'W')
 			{
 				if (!is_surrounded_by_walls(game, i, j))
 				{
-					printf("ERROR : Map is not surrounded by walls\n");
+					printf("Error\nMap is not surrounded by walls\n");
 					return (1);
 				}
 			}
