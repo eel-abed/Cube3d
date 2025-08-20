@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:12:59 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/05/03 19:40:36 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:19:13 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,61 @@ int	parse_textures_and_colors(t_game *game, int fd)
 		{
 			if (parse_texture(&game->map.no_texture, line) == 0)
 				textures_found++;
+			else
+			{
+				free(line);
+				return (1);
+			}
 		}
 		else if (ft_strncmp(line, "SO ", 3) == 0)
 		{
 			if (parse_texture(&game->map.so_texture, line) == 0)
 				textures_found++;
+			else
+			{
+				free(line);
+				return (1);
+			}
 		}
 		else if (ft_strncmp(line, "WE ", 3) == 0)
 		{
 			if (parse_texture(&game->map.we_texture, line) == 0)
 				textures_found++;
+			else
+			{
+				free(line);
+				return (1);
+			}
 		}
 		else if (ft_strncmp(line, "EA ", 3) == 0)
 		{
 			if (parse_texture(&game->map.ea_texture, line) == 0)
 				textures_found++;
+			else
+			{
+				free(line);
+				return (1);
+			}
 		}
 		else if (ft_strncmp(line, "F ", 2) == 0)
 		{
 			if (parse_color(line, &game->map.floor_color) == 0)
 				textures_found++;
+			else
+			{
+				free(line);
+				return (1);
+			}
 		}
 		else if (ft_strncmp(line, "C ", 2) == 0)
 		{
 			if (parse_color(line, &game->map.ceiling_color) == 0)
 				textures_found++;
+			else
+			{
+				free(line);
+				return (1);
+			}
 		}
 		free(line);
 	}

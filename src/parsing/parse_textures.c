@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:12:56 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/05/03 19:40:41 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/08/20 17:21:42 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	parse_texture(char **dest, char *line)
 	// Vérifier le format (2 éléments: identifiant et chemin)
 	if (len != 2)
 	{
-		printf("Error\nInvalid texture format: %s\n", line);
+		printf("Error\nInvalid texture format: %s", line);
 		ft_free_tab(split);
 		return (1);
 	}
 	// Vérifier si la texture a déjà été définie
 	if (*dest)
 	{
-		printf("Error\nTexture already defined\n");
+		printf("Error\nTexture %s already defined\n", split[0]);
 		ft_free_tab(split);
 		return (1);
 	}
