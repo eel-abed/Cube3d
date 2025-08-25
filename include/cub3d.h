@@ -6,7 +6,7 @@
 /*   By: eel-abed <eel-abed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 14:30:29 by eel-abed          #+#    #+#             */
-/*   Updated: 2025/05/03 20:04:06 by eel-abed         ###   ########.fr       */
+/*   Updated: 2025/08/25 16:48:08 by eel-abed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		parse_map(t_game *game, char *file_path);
 
 int		parse_textures_and_colors(t_game *game, int fd);
 int		parse_texture(char **dest, char *line);
+int		validate_texture_file(char *path);
 int		parse_color(char *line, int *color_dest);
 int		parse_map_grid(t_game *game, int fd, char *file_path);
 int		validate_map(t_game *game);
